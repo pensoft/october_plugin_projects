@@ -1,0 +1,101 @@
+tabs:
+    fields:
+        tag:
+            label: Tag
+            type: text
+            span: auto
+            commentAbove: 'Short project tag'
+            tab: About
+        cover:
+            label: Cover
+            span: right
+            mode: image
+            useCaption: true
+            fileTypes: 'svg,png,jpg'
+            type: fileupload
+            commentAbove: 'Project logo.'
+            tab: About
+        intro:
+            label: Introduction
+            type: text
+            span: left
+            commentAbove: 'Short description.'
+            tab: About
+        title:
+            label: Title
+            type: text
+            span: right
+            commentAbove: 'Full project title.'
+            tab: About
+        published:
+            label: Published
+            type: switch
+            span: auto
+            commentAbove: 'Toggle to show or hide on website'
+            tab: About
+        start:
+            label: 'Start Date'
+            mode: date
+            type: datepicker
+            span: left
+            commentAbove: 'Project start date.'
+            tab: About
+        end:
+            label: 'End Date'
+            mode: date
+            type: datepicker
+            span: right
+            commentAbove: 'Project end date.'
+            tab: About
+        illustration:
+            label: Illustration
+            span: auto
+            mode: image
+            useCaption: true
+            fileTypes: 'svg,png,jpg'
+            type: fileupload
+            commentAbove: 'Project illustration.'
+            tab: Content
+        content:
+            label: Content
+            size: large
+            span: full
+            type: richeditor
+            commentAbove: 'The complete content including abstract diagrams etc'
+            tab: Content
+        partners:
+            label: Partners
+            size: large
+            span: full
+            type: richeditor
+            commentAbove: 'List all partners info.'
+            tab: Content
+        contact:
+            label: Contact
+            size: large
+            span: full
+            type: richeditor
+            commentAbove: 'List all contact info (phone e-mail etc).'
+            tab: Content
+        publications:
+            label: Publications
+            size: large
+            span: full
+            type: richeditor
+            tab: Content
+        keywords_en:
+            label: 'Keywords (in English)'
+            type: taglist
+            mode: array
+            options: 'Pensoft\Projects\Models\Project::getUniqueKeywordsOptionsEN'
+            customTags: true
+            separator: comma
+            tab: Keywords
+        keywords_bg:
+            label: 'Keywords (in Bulgarian)'
+            type: taglist
+            mode: array
+            options: 'Pensoft\Projects\Models\Project::getUniqueKeywordsOptionsBG'
+            customTags: true
+            separator: comma
+            tab: Keywords

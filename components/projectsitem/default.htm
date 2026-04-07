@@ -1,0 +1,95 @@
+{% if record %}
+<div class="container subsections">
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="/projects" class="back-to-projects"> < {{'Back to projects' |_}}</a>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-2 col-xs-12">
+            {% if record.cover%}
+                <img src="{{record.cover.thumb(178, 166, {mode: 'crop'})}}" alt="{{ record.title|striptags }}">
+            {% endif %}
+        </div>
+        <div class="col-md-10 col-xs-12">
+
+            {% if record.title %}
+                <div class="col-xs-12 record_title">{{record.title}}</div>
+                {% if record.tag %}
+                <div class="col-xs-12 record_title">({{record.tag}})</div>
+                {% endif %}
+            {% endif %}
+            <!-- {% if record.title %}
+                <div class="col-xs-12 tag-full-title">{{record.title}}</div>
+            {% endif %} -->
+        </div>
+
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-xs-12">
+            {% if record.intro %}
+            <div><span class="subinfo">{{'Funding program' |_}}:</span> {{record.intro}}</div>
+            {% endif %}
+            {% if record.start and record.end %}
+            <div><span class="subinfo">{{'Project duration' |_}}:</span> {{record.start| date('Y')}} {% if record.end| date('Y') != record.start| date('Y') %} - {{record.end| date('Y')}} {% endif %}</div>
+            {% endif %}
+
+            {% if record.keywords_en.0 %}
+            {% set keywords = (lang == 'en') ? record.keywords_en : record.keywords_bg %}
+            <div><span class="subinfo">{{ 'Keywords' |_ }}:</span>
+                {{ keywords|join(', ')|trim }}
+            </div>
+            {% endif %}
+                  
+
+            {% if record.content %}
+            <div class="section-abstract">
+                <div class="section-projects-title">{{'Abstract' |_}}</div>
+                <div class="col-xs-12">
+                    {{record.content | raw}}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if record.partners %}
+            <div class="section-partners">
+                <div class="section-projects-title">{{'Partners' |_}}</div>
+                <div class="col-xs-12">
+                    {{record.partners | raw}}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if record.contact %}
+            <div class="section-contact">
+                <div class="section-projects-title">{{'Contact' |_}}</div>
+                <div class="col-xs-12">
+                    {{record.contact | raw}}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if record.illustration %}
+            <div class="section-illustration">
+                <div class="section-projects-title">{{'Illustration' |_}}</div>
+                <div class="col-xs-12 center-xs">
+                    <img src="{{record.illustration.thumb(954, 702, {mode: 'crop'})}}">
+                </div>
+            </div>
+            {% endif %}
+
+            {% if record.publications %}
+            <div class="section-publications">
+                <div class="section-projects-title">{{'List with publications' |_}}</div>
+                <div class="col-xs-12">
+                    {{record.publications | raw}}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endif %}

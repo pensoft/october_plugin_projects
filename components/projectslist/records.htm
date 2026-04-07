@@ -1,0 +1,49 @@
+{% if records.count > 0 %}
+<div class="projects-records" id="recordsContainer">
+    {% for record in records %}
+    <div class="col-xs-12 project-item">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 img-container">
+                <a href="/projects/{{record.slug}}">
+                    <img src="{{record.cover.thumb(258, 170, {mode: 'crop'})}}" alt="{{ record.title|striptags }}">
+                </a>
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <div class="row projects-list-content">
+                    <a href="/projects/{{record.slug}}">
+                        <div class="project-title">
+                            {% if record.title %}
+                                {{record.title}}
+                                {% if record.tag %}
+                                    <div class="project-title">({{record.tag}})</div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </a>
+                    <div class="project-dates">
+                        {% if record.start and record.end %}
+                        <div><span class="subinfo">{{'Project duration' |_}}:</span> {{record.start| date('Y')}} {% if record.end| date('Y') != record.start| date('Y') %} - {{record.end| date('Y')}} {% endif %}</div>
+                        {% endif %}
+                    </div>
+                    <div class="project-keywords">
+                        {% set keywords = (lang == 'en') ? record.keywords_en : record.keywords_bg %}
+                        {% if keywords %}
+                        <div><span class="subinfo">{{'Keywords' |_}}:</span>
+                            {{ keywords|join(', ')|trim }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="read-more-project"><a class="read-more" href="/projects/{{record.slug}}">{{'Read More' |_}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="center-xs">
+    <h1>{{'No results' |_}}</h1>
+    <p>{{'No matching results were found.' |_}}</p>
+</div>
+{% endif %}
